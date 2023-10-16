@@ -1,0 +1,87 @@
+﻿@using EmployeeManagement.ViewModel.Menu;
+@model IEnumerable<NavigationMenu>
+
+@{
+    int i = ViewBag.MenuId;
+
+    //int i =@Model.Any()==false? 0: @Model.Select(i => i.ParentMenuId.GetValueOrDefault()).First();
+}
+
+<div class="card text-center bg-transparent">
+    <div class="card-header">
+        <h3> Sub Menu Details</h3>
+    </div>
+    @if (Model.Any())
+    {
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Menu Name</th>
+                        <th scope="col">Parent Menu Id</th>
+                        <th scope="col">Controller Name</th>
+                        <th scope="col">Action Name</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Status</th>
+                        <th>
+                            <a asp-controller="Menu" asp-action="CreateSubMenu" asp-route-id="@i" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Add</a>
+                            <a asp-controller="Menu" asp-action="Index" class="btn btn-outline-warning">Back To List</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @item.ParentMenuId
+                            </td>
+                            <td>
+                                @item.ControllerName
+                            </td>
+                            <td>
+                                @item.ActionName
+                            </td>
+                            <td>
+                                @item.Icon
+                            </td>
+                            <td>
+                                @item.Position
+                            </td>
+                            <td>
+                                @item.Status
+                            </td>
+                            <td>
+                                <div role="group" class="w-60 btn-group">
+                                    <a asp-controller="Menu" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                                    <a asp-controller="Menu" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i>Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-muted">
+            2 days ago
+        </div>
+    }
+    else
+    {
+        <div class="card text-center bg-transparent">
+            <div class="card-header">No Sub Menu Created Yet</div>
+
+            <div class="card-body">
+                <h5 class="card-title">Use the button below to create a Sub Menu</h5>
+                <a asp-controller="Menu" asp-action="CreateSubMenu" asp-route-id="@i" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Add</a>
+                <a asp-controller="Menu" asp-action="Index" class="btn btn-outline-warning">Back To List</a>
+            </div>
+        </div>
+    }
+</div>
+
+

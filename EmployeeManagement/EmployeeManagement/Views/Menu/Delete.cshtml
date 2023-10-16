@@ -1,0 +1,48 @@
+﻿@using EmployeeManagement.ViewModel.Menu;
+@model NavigationMenuViewModel
+
+<div class="card text-center bg-transparent">
+    <div class="card-header">
+        <h2>Delete Menu</h2>
+    </div>
+   
+    <form method="post" asp-action="Delete">
+        <div class="card-body">
+        <input asp-for="Id" hidden />
+        <div asp-validation-summary="All"></div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Name">Name</label>
+                    <input type="text" class="form-control mb-3 bg-transparent" asp-for="Name" disabled>
+                <span asp-validation-for="Name" class=" alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="ParentMenuId">ParentMenuId</label>
+                    <input type="text" class="form-control mb-3 bg-transparent" asp-for="ParentMenuId" disabled>
+                <span asp-validation-for="ParentMenuId" class=" alert-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="ControllerName">ControllerName</label>
+                    <input type="text" class="form-control mb-3 bg-transparent" asp-for="ControllerName" disabled>
+                <span asp-validation-for="ControllerName" class=" alert-danger"></span>
+            </div>
+            <div class="form-group col-md-6 mb-3">
+                <div class="form-check">
+                        <input class="form-check-input bg-transparent" asp-for="Status" type="checkbox" value="true" id="flexCheckChecked" />
+                    <label class="form-check-label" for="flexCheckChecked">Status</label>
+                </div>              
+            </div>
+        </div>
+        </div>
+        <div class="card-footer shadow-lg p-3 mb-5 bg-body rounded">
+            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i>Delete</button>
+            <a asp-controller="Menu" asp-action="Index" class="btn btn-outline-warning">Back To List</a>
+        </div>
+
+    </form>
+
+</div>

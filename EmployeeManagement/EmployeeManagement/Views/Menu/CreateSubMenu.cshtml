@@ -1,0 +1,81 @@
+﻿@using EmployeeManagement.ViewModel.Menu;
+@model NavigationMenuViewModel
+
+<div class="card text-center text-danger shadow-lg p-3 mb-5 bg-body rounded bg-transparent">
+    <div class="card-header text-center shadow-lg p-3 mb-5 bg-body rounded">
+        <h3> Add Sub Menu</h3>
+    </div>
+
+    <form method="post">
+        <div class="card-body">
+            <div asp-validation-summary="All"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent" id="inputGroup-sizing-sm">Name</span>
+                        </div>
+                        <input type="text" class="form-control bg-transparent" asp-for="Name" aria-label="Name" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent" id="inputGroup-sizing-sm">ParentMenuId</span>
+                        </div>
+                        <input type="text" class="form-control bg-transparent" asp-for="ParentMenuId" aria-label="ParentMenuId" aria-describedby="inputGroup-sizing-sm" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent" id="inputGroup-sizing-sm">ControllerName</span>
+                        </div>
+                        <input type="text" class="form-control bg-transparent" asp-for="ControllerName" aria-label="ControllerName" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent" id="inputGroup-sizing-sm">ActionName</span>
+                        </div>
+                        <input type="text" class="form-control bg-transparent" asp-for="ActionName" aria-label="ActionName" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-3">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent" id="inputGroup-sizing-sm">Icon</span>
+                        </div>
+                        <input type="text" class="form-control bg-transparent" asp-for="Icon" aria-label="Icon" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent" id="inputGroup-sizing-sm">Position</span>
+                        </div>
+                        <input type="text" class="form-control bg-transparent" asp-for="Position" aria-label="Position" aria-describedby="inputGroup-sizing-sm" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input bg-transparent" asp-for="Status" type="checkbox" value="true" id="flexCheckChecked" checked />
+                        <label class="form-check-label bg-transparent" for="flexCheckChecked">Status</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer shadow-lg p-3 mb-5 bg-body rounded">            
+            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-file-plus-fill" style="width:auto"></i>Add Sub Menu</button>
+            <a asp-controller="Menu" asp-action="Index" class="btn btn-outline-warning">Back To List</a>
+        </div>
+    </form>
+</div>

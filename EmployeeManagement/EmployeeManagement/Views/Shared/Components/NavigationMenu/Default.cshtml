@@ -1,0 +1,49 @@
+﻿@model List<EmployeeManagement.ViewModel.Menu.NavigationMenuViewModel>
+@{
+	ViewData["Title"] = "NavigationMenu";
+}
+
+<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Employee Management</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	<ul class="navbar-nav mr-auto">
+		@*<li class="nav-item">
+			<a class="nav-link text" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link text" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
+		</li>*@
+		@*Menu Items from the database*@
+		@foreach (var MainMenu in Model)
+		{
+			if ((MainMenu.ParentMenuId == null || MainMenu.ParentMenuId == 0) && MainMenu.Status==true) //Level one items will have null parent id
+			{
+				if (!string.IsNullOrWhiteSpace(MainMenu.ControllerName))
+				{
+					<li class="nav-item active">
+						<a class="nav-link text" asp-area="" icon="@MainMenu.Icon" asp-controller="@MainMenu.ControllerName" asp-action="@MainMenu.ActionName"><i class="@MainMenu.Icon"></i>@MainMenu.Name</a>
+					</li>
+				}
+				var children = Model.Where(x => x.ParentMenuId == MainMenu.Id).ToList();
+				if (children.Count > 0)
+				{
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="@MainMenu.Icon"></i>@MainMenu.Name</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown01">
+							@foreach (var SubMenu in children)
+							{
+								if (SubMenu.Status == true)
+								{
+									<a class="dropdown-item" asp-area="" asp-controller="@SubMenu.ControllerName" asp-action="@SubMenu.ActionName"><i class="@SubMenu.Icon"></i>@SubMenu.Name</a>
+								}
+							}
+						</div>
+					</li>
+				}
+			}
+		}
+	</ul>
+	<partial name="_LoginPartial" />
+</div>

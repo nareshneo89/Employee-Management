@@ -1,0 +1,143 @@
+﻿@model IEnumerable<NavigationMenu>
+@*@using EmployeeManagement.Models.Menu;
+@model ReflectionIT.Mvc.Paging.PagingList<NavigationMenu>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
+@{
+    ViewData["Title"] = "Menu Details";
+}
+*@
+<div class="card text-center bg-transparent">
+    <div class="card-header">
+        <div class="row g-0">
+            <div class="col"> <h3> Master Menu Details</h3></div>
+            @* <div class="col justify-content-md-end">
+            <form method="get" class="form-inline">
+            <input name="filter" class="form-control bg-transparent" placeholder="filter"
+            value="@Model.RouteValue["Filter"]" />
+            <button type="submit" class="btn btn-outline-info">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+            </button>
+            </form>
+            </div>*@
+        </div>
+
+        @* <nav aria-label="NavigationMenu example">
+        <vc:pager paging-list="@Model" />
+        </nav>*@
+    </div>
+    @if (Model.Any())
+    {
+        <div class="card-body shadow-lg p-3 mb-5 bg-body rounded ">
+            <table class="table">
+                <thead>
+                    <tr class="flex-lg-wrap text-xxl-center">
+
+                        <td>
+                            Id
+                        </td>
+                        <td>
+                            Name
+                        </td>
+                        <td>
+                            ParentMenuId
+                        </td>
+                        <td>
+                            ControllerName
+                        </td>
+                        <td>
+                            ActionName
+                        </td>
+                        <td>
+                            Icon
+                        </td>
+                        <td>
+                            Position
+                        </td>
+                        <td>
+                            Status
+                        </td>
+                        <td>
+                            <a asp-controller="Menu" asp-action="Create" class="btn btn-outline-secondary"><i class="bi bi-pencil-square"></i>Add</a>
+                        </td>
+                        @*<th scope="col"> @Html.SortableHeaderFor(model => model.Id, this.Model)</th>
+                    <th scope="col">
+                    @Html.SortableHeaderFor(model => model.Name, this.Model)*@
+                        @*@Html.SortableHeaderFor(model => model.Supplier.CompanyName,
+                    "Supplier.CompanyName, ProductName", this.Model)*@
+                        @* </th>
+                    <th scope="col">
+                    @Html.SortableHeaderFor(model => model.ParentMenuId, this.Model)
+                    </th>
+                    <th scope="col"> @Html.SortableHeaderFor(model => model.ControllerName, this.Model)</th>
+                    <th scope="col"> @Html.SortableHeaderFor(model => model.ActionName, this.Model)</th>
+                    <th scope="col"> @Html.SortableHeaderFor(model => model.Icon, this.Model)</th>
+                    <th scope="col"> @Html.SortableHeaderFor(model => model.Position, this.Model)</th>
+                    <th scope="col">Status</th>
+                    <th>
+                    <a asp-controller="Menu" asp-action="Create" class="btn btn-outline-secondary"><i class="bi bi-pencil-square"></i>Add</a>
+                    </th>*@
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr class="btn-outline-light">
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @item.ParentMenuId
+                            </td>
+                            <td>
+                                @item.ControllerName
+                            </td>
+                            <td>
+                                @item.ActionName
+                            </td>
+                            <td>
+                                @item.Icon
+                            </td>
+                            <td>
+                                @item.Position
+                            </td>
+                            <td>
+                                @item.Status
+                            </td>
+                            <td>
+                                <div role="group" class="w-60 btn-group">
+                                    <a asp-controller="Menu" asp-action="SubMenuDetails" asp-route-id="@item.Id" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>View Sub Menu</a>
+                                    <a asp-controller="Menu" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+                                    <a asp-controller="Menu" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i>Delete</a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-muted">
+            @* <partial name="Components/PageNavigation/_SmallPager" model="this.Model" />*@
+        </div>
+    }
+    else
+    {
+        <div class="card bg-transparent">
+            <div class="card-header bg-transparent">No Menu Created Yet</div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Use the button below to create a Menu</h5>
+            <a asp-controller="Menu" asp-action="Create" class="btn btn-outline-secondary"><i class="bi bi-pencil-square"></i>Add</a>
+        </div>
+    }
+</div>
+<!-- Modal -->
+@*<nav aria-label="Suppliers navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>*@
+

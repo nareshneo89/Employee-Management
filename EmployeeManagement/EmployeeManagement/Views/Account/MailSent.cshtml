@@ -1,0 +1,10 @@
+﻿@if (ViewBag.ErrorTitle == null)
+{
+    <h3>Thank you for confirming you email</h3>
+}
+else
+{
+    <h1 class="text-danger">@ViewBag.ErrorTitle</h1>
+    <h1 class="text-danger">@ViewBag.ErrorMessage</h1>
+}
+
